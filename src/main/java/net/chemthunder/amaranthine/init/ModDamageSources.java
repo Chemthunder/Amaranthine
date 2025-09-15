@@ -9,9 +9,15 @@ import net.minecraft.registry.RegistryKeys;
 
 public interface ModDamageSources {
     RegistryKey<DamageType> IMPALED = of("impaled");
+    RegistryKey<DamageType> BLIND = of("blind");
+
 
     static DamageSource impaled(LivingEntity entity) {
         return entity.getDamageSources().create(IMPALED);
+    }
+
+    static DamageSource blind(LivingEntity entity) {
+        return entity.getDamageSources().create(BLIND);
     }
 
 

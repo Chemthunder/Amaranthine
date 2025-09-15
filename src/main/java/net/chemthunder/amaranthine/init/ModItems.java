@@ -5,6 +5,8 @@ import net.chemthunder.amaranthine.item.*;
 import net.chemthunder.amaranthine.item.cookie.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BlocksAttacksComponent;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -12,8 +14,12 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Rarity;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static net.acoyt.acornlib.util.ItemUtils.modifyItemNameColor;
@@ -57,6 +63,12 @@ public interface ModItems {
             .sword(ToolMaterial.NETHERITE, 4.0F, -2.7F)
             .rarity(Rarity.EPIC)
             .fireproof()
+
+            .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent
+                    (0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(60f, Optional.empty(), 0.0f, 1.0f)),
+                    new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
+                    Optional.of(DamageTypeTags.BYPASSES_SHIELD),
+                    Optional.of(SoundEvents.ITEM_SHIELD_BLOCK), Optional.of(SoundEvents.ITEM_SHIELD_BREAK)))
     );
 
     Item AMARANTHINE_CLEAVER = create("amaranthine_cleaver", CleaverItem::new, new Item.Settings()
@@ -72,7 +84,12 @@ public interface ModItems {
                     .build()));
 
     Item BLIND_OBEDIENCE = create("blind_obedience", BlindObedienceItem::new, new Item.Settings()
-            .sword(ToolMaterial.NETHERITE, 3.5f, -2.7f)
+            .sword(ToolMaterial.NETHERITE, -2.5f, -2.7f)
+
+            .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent(0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(30f, Optional.empty(), 0.0f, 1.0f)),
+                    new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
+                    Optional.of(DamageTypeTags.BYPASSES_SHIELD),
+                    Optional.of(SoundEvents.ITEM_SHIELD_BLOCK), Optional.of(SoundEvents.ITEM_SHIELD_BREAK)))
     );
 
     Item CAPTAINS_CUTLASS = create("captains_cutlass", CutlassItem::new, new Item.Settings()

@@ -1,6 +1,8 @@
 package net.chemthunder.amaranthine.mixin.client;
 
 import net.chemthunder.amaranthine.init.ModItems;
+import net.chemthunder.amaranthine.item.BlindObedienceItem;
+import net.chemthunder.amaranthine.item.ChrysaorItem;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -30,6 +32,18 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         ItemStack stack = player.getStackInArm(arm);
         if (stack.isOf(ModItems.AMARANTHINE_GREATSWORD)) {
             cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
+        }
+
+        if (stack.getItem() instanceof BlindObedienceItem) {
+            if (player.isUsingItem()) {
+                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+            }
+        }
+
+        if (stack.getItem() instanceof ChrysaorItem) {
+            if (player.isUsingItem()) {
+                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+            }
         }
     }
 }

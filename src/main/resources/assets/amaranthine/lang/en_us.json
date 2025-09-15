@@ -57,5 +57,8 @@
 
      "amaranthine.subtitles.ambient.insanity_voices": "Voices of the Angels",
 
-     "itemGroup.amaranthine": "Amaranthine"
+     "itemGroup.amaranthine": "Amaranthine",
+
+     "death.attack.blind": "%1$s attempted to wield a broken sword",
+     "death.attack.blind.player": "%1$s attempted to wield a broken sword whilst fighting %2$s"
 }

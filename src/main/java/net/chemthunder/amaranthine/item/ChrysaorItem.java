@@ -4,6 +4,7 @@ import net.acoyt.acornlib.client.particle.SweepParticleEffect;
 import net.acoyt.acornlib.item.CustomHitParticleItem;
 import net.acoyt.acornlib.item.KillEffectItem;
 import net.chemthunder.amaranthine.init.ModItems;
+import net.minecraft.advancement.criterion.UsedTotemCriterion;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.TooltipDisplayComponent;
@@ -64,9 +65,6 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, KillEff
     public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         attacker.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME);
     }
-
-
-
 
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState state = context.getWorld().getBlockState(context.getBlockPos());

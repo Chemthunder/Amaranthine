@@ -2,12 +2,16 @@ package net.chemthunder.amaranthine.item;
 
 import net.acoyt.acornlib.client.particle.SweepParticleEffect;
 import net.acoyt.acornlib.item.CustomHitParticleItem;
+import net.acoyt.acornlib.item.CustomHitSoundItem;
 import net.acoyt.acornlib.item.KillEffectItem;
+import net.chemthunder.amaranthine.init.ModDamageSources;
 import net.chemthunder.amaranthine.init.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,7 +27,7 @@ import net.minecraft.world.World;
 import java.util.function.Consumer;
 
 //
-public class BlindObedienceItem extends Item implements KillEffectItem, CustomHitParticleItem {
+public class BlindObedienceItem extends Item implements CustomHitParticleItem, CustomHitSoundItem {
     public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{new SweepParticleEffect(0x0c0912, 0x231a36), new SweepParticleEffect(0x8145ff, 0x5200ff)};
 
     public BlindObedienceItem(Settings settings) {
@@ -53,7 +57,14 @@ public class BlindObedienceItem extends Item implements KillEffectItem, CustomHi
 
 
     @Override
-    public void killEntity(World world, ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity1) {
+    public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        World world = attacker.getWorld();
+
+
+if (world instanceof ServerWorld serverWorld) {
+    attacker.damage(serverWorld, ModDamageSources.blind(attacker), 3f);
+}
+        super.postHit(stack, target, attacker);
     }
 
     public ActionResult useOnBlock(ItemUsageContext context) {
@@ -74,5 +85,10 @@ public class BlindObedienceItem extends Item implements KillEffectItem, CustomHi
         }
 
         return super.useOnBlock(context);
+    }
+
+    @Override
+    public void playHitSound(PlayerEntity playerEntity) {
+        playerEntity.playSound(SoundEvents.ENTITY_IRON_GOLEM_STEP, 3, -1);
     }
 }
