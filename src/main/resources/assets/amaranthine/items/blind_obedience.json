@@ -18,6 +18,16 @@
                "type": "model",
                "model": "amaranthine:item/blind_obedience"
           },
-          "property": "display_context"
+          "property": "display_context",
+
+
+          "on_true": {
+               "type": "model",
+               "model": "amaranthine:item/blind_obedience_blocking"
+          },
+          "on_false": {
+               "type": "model",
+               "model": "amaranthine:item/blind_obedience"
+          }
      }
 }
