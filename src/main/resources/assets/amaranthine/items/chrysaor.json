@@ -18,6 +18,15 @@
                "type": "model",
                "model": "amaranthine:item/chrysaor"
           },
-          "property": "display_context"
+          "property": "display_context",
+
+          "on_true": {
+               "type": "model",
+               "model": "amaranthine:item/chrysaor_blocking"
+          },
+          "on_false": {
+               "type": "model",
+               "model": "amaranthine:item/chrysaor"
+          }
      }
 }

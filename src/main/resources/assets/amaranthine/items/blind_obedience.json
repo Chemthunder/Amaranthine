@@ -20,7 +20,6 @@
           },
           "property": "display_context",
 
-
           "on_true": {
                "type": "model",
                "model": "amaranthine:item/blind_obedience_blocking"

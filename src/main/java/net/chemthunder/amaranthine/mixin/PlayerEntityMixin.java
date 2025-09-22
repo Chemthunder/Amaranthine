@@ -2,7 +2,6 @@ package net.chemthunder.amaranthine.mixin;
 
 import net.chemthunder.amaranthine.init.ModStatusEffects;
 import net.chemthunder.amaranthine.item.ChrysaorItem;
-import net.chemthunder.amaranthine.item.CleaverItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -43,8 +42,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                         );
 
             }
-
-
         }
     }
 }

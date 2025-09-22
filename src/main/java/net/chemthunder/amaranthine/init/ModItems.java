@@ -1,5 +1,6 @@
 package net.chemthunder.amaranthine.init;
 
+import net.acoyt.acornlib.api.item.AcornItemSettings;
 import net.chemthunder.amaranthine.Amaranthine;
 import net.chemthunder.amaranthine.item.*;
 import net.chemthunder.amaranthine.item.cookie.*;
@@ -18,11 +19,13 @@ import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Rarity;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static net.acoyt.acornlib.util.ItemUtils.modifyItemNameColor;
+import static net.acoyt.acornlib.api.util.ItemUtils.modifyItemNameColor;
+
 
 public interface ModItems {
     Item AMARANTHINE_GREATSWORD = create("amaranthine_greatsword", AmaranthineGreatswordItem::new, new Item.Settings()
@@ -53,23 +56,11 @@ public interface ModItems {
             .food(new FoodComponent(5, 4, true)
             )
             .maxCount(16)
-            );
+    );
 
     Item INTEL_COOKIE = create("intel_cookie", IntelCookie::new, new Item.Settings()
             .food(new FoodComponent(5, 4, true))
             .maxCount(16));
-
-    Item CHRYSAOR = create("chrysaor", ChrysaorItem::new, new Item.Settings()
-            .sword(ToolMaterial.NETHERITE, 4.0F, -2.7F)
-            .rarity(Rarity.EPIC)
-            .fireproof()
-
-            .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent
-                    (0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(60f, Optional.empty(), 0.0f, 1.0f)),
-                    new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
-                    Optional.of(DamageTypeTags.BYPASSES_SHIELD),
-                    Optional.of(SoundEvents.ITEM_SHIELD_BLOCK), Optional.of(SoundEvents.ITEM_SHIELD_BREAK)))
-    );
 
     Item AMARANTHINE_CLEAVER = create("amaranthine_cleaver", CleaverItem::new, new Item.Settings()
             .axe(ToolMaterial.NETHERITE, 3.0f, -2.5f)
@@ -102,8 +93,20 @@ public interface ModItems {
 
     Item IRRADIATED_AMARANTHINE_SHARD = create("irradiated_amaranthine_shard", IrradiatedItem::new, new Item.Settings()
             .maxCount(1)
-                    .rarity(Rarity.UNCOMMON)
-            );
+            .rarity(Rarity.UNCOMMON)
+    );
+
+    Item CHRYSAOR = create("chrysaor", ChrysaorItem::new, new AcornItemSettings()
+            .twoHanded()
+
+            .maxCount(1)
+            .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent(0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(80f, Optional.empty(), 0.0f, 1.0f)),
+            new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
+            Optional.of(DamageTypeTags.BYPASSES_SHIELD),
+            Optional.of(SoundEvents.ITEM_SHIELD_BLOCK), Optional.of(SoundEvents.ITEM_SHIELD_BREAK)))
+
+            .sword(ToolMaterial.NETHERITE, 4.5f, -2.7f)
+    );
 
 
     static Item create(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
@@ -115,8 +118,8 @@ public interface ModItems {
         modifyItemNameColor(AMARANTHINE_GREATSWORD, 0xf3dd1e);
         modifyItemNameColor(AMARANTHINE_SHARD, 0xE29242);
         modifyItemNameColor(AMARANTHINE_DUST, 0x985DCE);
-        modifyItemNameColor(CHRYSAOR, 0xA008D8);
         modifyItemNameColor(BLIND_OBEDIENCE, 0x0a0a0a);
         modifyItemNameColor(CAPTAINS_CUTLASS, 0x93E9BE);
+        modifyItemNameColor(CHRYSAOR, 0x3c1c1b);
     }
 }

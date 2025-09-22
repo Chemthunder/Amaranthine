@@ -1,17 +1,14 @@
 package net.chemthunder.amaranthine.item;
 
-import net.acoyt.acornlib.client.particle.SweepParticleEffect;
-import net.acoyt.acornlib.item.CustomHitParticleItem;
-import net.acoyt.acornlib.item.CustomHitSoundItem;
-import net.acoyt.acornlib.item.KillEffectItem;
+import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.amaranthine.init.ModDamageSources;
 import net.chemthunder.amaranthine.init.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.TooltipDisplayComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.function.Consumer;
 
 //
-public class BlindObedienceItem extends Item implements CustomHitParticleItem, CustomHitSoundItem {
+public class BlindObedienceItem extends Item implements CustomHitParticleItem {
     public static final SweepParticleEffect[] EFFECTS = new SweepParticleEffect[]{new SweepParticleEffect(0x0c0912, 0x231a36), new SweepParticleEffect(0x8145ff, 0x5200ff)};
 
     public BlindObedienceItem(Settings settings) {
@@ -88,7 +85,7 @@ if (world instanceof ServerWorld serverWorld) {
     }
 
     @Override
-    public void playHitSound(PlayerEntity playerEntity) {
-        playerEntity.playSound(SoundEvents.ENTITY_IRON_GOLEM_STEP, 3, -1);
+    public void spawnHitParticles(PlayerEntity playerEntity, Entity entity) {
+        spawnHitParticles(playerEntity);
     }
 }

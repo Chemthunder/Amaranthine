@@ -1,12 +1,11 @@
 package net.chemthunder.amaranthine.item;
 
-import net.acoyt.acornlib.client.particle.SweepParticleEffect;
-import net.acoyt.acornlib.item.CustomHitParticleItem;
-import net.acoyt.acornlib.item.CustomHitSoundItem;
-import net.acoyt.acornlib.item.KillEffectItem;
+import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.amaranthine.init.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -15,7 +14,6 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -69,6 +67,11 @@ public class AmaranthineGreatswordItem extends Item implements CustomHitParticle
         target.setOnFireFor(4);
 
         super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public void spawnHitParticles(PlayerEntity playerEntity, Entity entity) {
+        spawnHitParticles(playerEntity);
     }
 }
 

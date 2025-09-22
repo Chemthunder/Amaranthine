@@ -1,15 +1,10 @@
 package net.chemthunder.amaranthine.item;
 
-import net.acoyt.acornlib.client.particle.SweepParticleEffect;
-import net.acoyt.acornlib.item.CustomHitParticleItem;
-import net.acoyt.acornlib.item.KillEffectItem;
-import net.chemthunder.amaranthine.init.ModSounds;
-import net.chemthunder.amaranthine.init.ModStatusEffects;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
+import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -37,5 +32,10 @@ public class CleaverItem extends Item implements CustomHitParticleItem {
                     0, deltaX, 0.0F, deltaZ, 0.0F
             );
         }
+    }
+
+    @Override
+    public void spawnHitParticles(PlayerEntity playerEntity, Entity entity) {
+        spawnHitParticles(playerEntity);
     }
 }

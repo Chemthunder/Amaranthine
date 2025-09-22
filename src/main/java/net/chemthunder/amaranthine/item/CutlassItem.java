@@ -1,7 +1,8 @@
 package net.chemthunder.amaranthine.item;
 
-import net.acoyt.acornlib.client.particle.SweepParticleEffect;
-import net.acoyt.acornlib.item.CustomHitParticleItem;
+import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.server.world.ServerWorld;
@@ -30,5 +31,10 @@ public class CutlassItem extends Item implements CustomHitParticleItem {
                     0, deltaX, 0.0F, deltaZ, 0.0F
             );
         }
+    }
+
+    @Override
+    public void spawnHitParticles(PlayerEntity playerEntity, Entity entity) {
+        spawnHitParticles(playerEntity);
     }
 }

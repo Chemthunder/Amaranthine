@@ -1,6 +1,9 @@
 package net.chemthunder.amaranthine;
 
-import net.chemthunder.amaranthine.init.*;
+import net.chemthunder.amaranthine.init.ModItemGroup;
+import net.chemthunder.amaranthine.init.ModItems;
+import net.chemthunder.amaranthine.init.ModSounds;
+import net.chemthunder.amaranthine.init.ModStatusEffects;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 
@@ -17,10 +20,7 @@ public class Amaranthine implements ModInitializer {
 
         ModStatusEffects.init();
 
-        ModBlocks.init();
-
         ModItemGroup.init();
-
 	}
 
     public static Identifier id(String path) {

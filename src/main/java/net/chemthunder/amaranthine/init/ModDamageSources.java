@@ -10,6 +10,7 @@ import net.minecraft.registry.RegistryKeys;
 public interface ModDamageSources {
     RegistryKey<DamageType> IMPALED = of("impaled");
     RegistryKey<DamageType> BLIND = of("blind");
+    RegistryKey<DamageType> CHRY_KILL = of("chry_kill");
 
 
     static DamageSource impaled(LivingEntity entity) {
@@ -18,6 +19,10 @@ public interface ModDamageSources {
 
     static DamageSource blind(LivingEntity entity) {
         return entity.getDamageSources().create(BLIND);
+    }
+
+    static DamageSource chry_kill(LivingEntity entity) {
+        return entity.getDamageSources().create(CHRY_KILL);
     }
 
 

@@ -8,12 +8,10 @@
           "Chemthunder: (Developer)"
      ],
      "contributors": [
-          "Potatanata: (Sword Texture)",
-          "AcoYT: (Other Textures/Code Cleanup)",
-          "ArcCM: (Textures)",
-          "Masterwarrior_11: (Textures)"
+          "Potatanata",
+          "AcoYT"
      ],
-     "license": "ARR",
+     "license": "Chemthunder License",
      "icon": "assets/amaranthine/icon.png",
      "environment": "*",
      "entrypoints": {

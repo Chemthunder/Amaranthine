@@ -31,9 +31,8 @@ public interface ModItemGroup {
         itemGroup.add(ModItems.AMARANTHINE_GREATSWORD);
         itemGroup.add(ModItems.CHRYSAOR);
         itemGroup.add(ModItems.AMARANTHINE_CLEAVER);
-        itemGroup.add(ModItems.BLIND_OBEDIENCE);
+        itemGroup.addAfter(ModItems.CHRYSAOR, ModItems.BLIND_OBEDIENCE);
         itemGroup.add(ModItems.CAPTAINS_CUTLASS);
-        itemGroup.add(ModBlocks.AMARANTHINE_BLOCK);
         itemGroup.add(ModItems.ARC_COOKIE);
         itemGroup.add(ModItems.ARC_COOKIE_BREEZE);
         itemGroup.add(ModItems.INKWELL_COOKIE);
