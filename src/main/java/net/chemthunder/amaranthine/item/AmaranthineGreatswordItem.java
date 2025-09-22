@@ -11,9 +11,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -44,15 +46,20 @@ public class AmaranthineGreatswordItem extends Item implements CustomHitParticle
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-
+        BlockPos pos = context.getBlockPos();
         BlockState state = context.getWorld().getBlockState(context.getBlockPos());
         PlayerEntity user = context.getPlayer();
-        if (user != null && user.isSneaking() && state.isOf(Blocks.AMETHYST_CLUSTER)) {
+        if (user != null && user.isSneaking() && state.isOf(Blocks.WATER_CAULDRON)) {
             ItemStack stack = user.getMainHandStack();
+            World world = user.getWorld();
+
             if (stack.isOf(ModItems.AMARANTHINE_GREATSWORD)) {
                 stack.decrement(1);
                 user.giveItemStack(ModItems.CHRYSAOR.getDefaultStack());
                 user.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 0.8F, 1.0F);
+                if (world instanceof ServerWorld serverWorld) {
+                    serverWorld.spawnParticles(ParticleTypes.END_ROD, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 50, 0, 1, 0, 0.5);
+                }
             }
             return ActionResult.SUCCESS;
         }

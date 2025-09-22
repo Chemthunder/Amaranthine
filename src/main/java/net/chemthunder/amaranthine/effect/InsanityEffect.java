@@ -19,9 +19,9 @@ public class InsanityEffect extends StatusEffect {
     }
 
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity player, int amplifier) {
-if (player instanceof PlayerEntity playerEntity) {
-    playerEntity.playSoundToPlayer(ModSounds.INSANITY_VOICES, SoundCategory.MASTER, 1, 0);
-}
+        if (player instanceof PlayerEntity playerEntity) {
+            playerEntity.playSoundToPlayer(ModSounds.INSANITY_VOICES, SoundCategory.MASTER, 1, 0);
+        }
         return super.applyUpdateEffect(world, player, amplifier);
     }
 

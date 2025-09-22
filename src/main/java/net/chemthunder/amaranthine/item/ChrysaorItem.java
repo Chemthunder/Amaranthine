@@ -5,23 +5,32 @@ import net.acoyt.acornlib.api.item.CustomHitSoundItem;
 import net.acoyt.acornlib.api.item.CustomKillSourceItem;
 import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.amaranthine.init.ModDamageSources;
+import net.chemthunder.amaranthine.init.ModItems;
+import net.minecraft.advancement.criterion.UsedTotemCriterion;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
 public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomKillSourceItem, CustomHitSoundItem {
+    public boolean chryShield = false;
+
     public ChrysaorItem(Settings settings) {
         super(settings);
     }
@@ -62,5 +71,19 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
     @Override
     public void playHitSound(PlayerEntity playerEntity, Entity entity) {
         playerEntity.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK);
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        Entity user = entity.getOwner();
+        World ownerWorld = user.getWorld();
+        BlockPos pos = entity.getBlockPos();
+
+        if (ownerWorld instanceof ServerWorld serverWorld && user instanceof PlayerEntity player) {
+            serverWorld.spawnParticles(ParticleTypes.END_ROD, pos.getX(), pos.getY(), pos.getZ(), 50, 0, 0, 0, 1);
+            player.giveItemStack(ModItems.BLIND_OBEDIENCE.getDefaultStack());
+        }
+
+        super.onItemEntityDestroyed(entity);
     }
 }

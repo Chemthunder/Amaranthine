@@ -108,6 +108,8 @@ public interface ModItems {
             .sword(ToolMaterial.NETHERITE, 4.5f, -2.7f)
     );
 
+    Item CURSED_MASK = create("cursed_mask", )
+
 
     static Item create(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
         return Items.register(RegistryKey.of(RegistryKeys.ITEM, Amaranthine.id(name)), factory, settings);
