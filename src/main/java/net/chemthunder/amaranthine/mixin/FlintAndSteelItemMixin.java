@@ -33,12 +33,12 @@ public class FlintAndSteelItemMixin extends Item {
 
         if (user != null && user.isSneaking() && state.isOf(ModBlocks.CHEM_PLUSH)) {
             if (world instanceof ServerWorld serverWorld) {
-                FallingBlockEntity penis = FallingBlockEntity.spawnFromBlock(world, pos, state);
-                BlockPos penisPos = penis.getBlockPos();
+                FallingBlockEntity chemPlushEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
+                BlockPos chemPlushEntityPos = chemPlushEntity.getBlockPos();
 
                 user.playSound(ModSounds.CHEM_SQUISH, 50, -2);
-                world.createExplosion(penis, penisPos.getX(), penisPos.getY(), penisPos.getZ(), 5, World.ExplosionSourceType.TNT);
-                penis.kill(serverWorld);
+                world.createExplosion(chemPlushEntity, chemPlushEntityPos.getX(), chemPlushEntityPos.getY(), chemPlushEntityPos.getZ(), 0, World.ExplosionSourceType.TNT);
+                chemPlushEntity.kill(serverWorld);
             }
         }
     }
