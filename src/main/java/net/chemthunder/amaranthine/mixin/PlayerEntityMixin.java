@@ -29,9 +29,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             )}
     )
     private void reapTargetOnCrit(Entity target, CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity)(Object)this;
         ItemStack stack = this.getStackInHand(Hand.MAIN_HAND);
-        if (stack.getItem() instanceof ChrysaorItem item) {
+        if (stack.getItem() instanceof ChrysaorItem) {
             if (target instanceof LivingEntity living) {
                 living.addStatusEffect(
                         new StatusEffectInstance(
@@ -40,7 +39,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                                 1
                         )
                         );
-
             }
         }
     }

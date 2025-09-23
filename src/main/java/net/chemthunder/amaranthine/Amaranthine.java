@@ -7,21 +7,13 @@ import net.minecraft.util.Identifier;
 public class Amaranthine implements ModInitializer {
 	public static final String MOD_ID = "amaranthine";
 
-
-
-
 	public void onInitialize() {
         ModItems.init();
-
         ModSounds.init();
-
         ModStatusEffects.init();
-
         ModItemGroup.init();
-
         ModBlocks.init();
 	}
-
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);
     }
