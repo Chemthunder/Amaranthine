@@ -25,5 +25,12 @@
                "amaranthine:block/chem_squish"
           ],
           "subtitle": "amaranthine.subtitles.block.chem_squish"
+     },
+
+     "music.sugar_water_cyanide": {
+          "sounds": [
+               "amaranthine:music/sugar_water_cyanide"
+          ],
+          "subtitle": "amaranthine.subtitles.music.sugar_water_cyanide"
      }
 }

@@ -4,13 +4,10 @@ import net.acoyt.acornlib.api.item.AcornItemSettings;
 import net.chemthunder.amaranthine.Amaranthine;
 import net.chemthunder.amaranthine.item.*;
 import net.chemthunder.amaranthine.item.cookie.*;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BlocksAttacksComponent;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKey;
@@ -19,7 +16,6 @@ import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Rarity;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -115,5 +111,6 @@ public interface ModItems {
         modifyItemNameColor(BLIND_OBEDIENCE, 0x0a0a0a);
         modifyItemNameColor(CAPTAINS_CUTLASS, 0x93E9BE);
         modifyItemNameColor(CHRYSAOR, 0x3c1c1b);
+        modifyItemNameColor(Item.fromBlock(ModBlocks.CHEM_PLUSH), 0x47091d);
     }
 }

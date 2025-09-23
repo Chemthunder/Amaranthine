@@ -33,7 +33,8 @@ public interface ModBlocks {
     // Create and Register with an item, always
     static Block createWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = create(name, factory, settings);
-        ModItems.create(name, itemSettings -> new BlockItem(block, itemSettings), new Item.Settings().useBlockPrefixedTranslationKey().equippableUnswappable(EquipmentSlot.HEAD));
+        ModItems.create(name, itemSettings -> new BlockItem(block, itemSettings), new Item.Settings().useBlockPrefixedTranslationKey().equippableUnswappable(EquipmentSlot.HEAD)
+                .jukeboxPlayable(ModJukeboxSongs.SUGAR_WATER_CYANIDE));
         return block;
     }
 

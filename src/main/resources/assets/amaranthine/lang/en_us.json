@@ -66,5 +66,9 @@
      "block.amaranthine.chem_plush": "Chem Plush",
      "block.amaranthine.chem_plush.desc": "Only $9.99!",
 
-     "amaranthine.subtitles.block.chem_squish": "squarsh"
+     "amaranthine.subtitles.block.chem_squish": "squarsh",
+
+     "amaranthine.subtitles.music.sugar_water_cyanide": "Sugar Water Cyanide by Rebecca Black",
+
+     "jukebox_song.amaranthine.sugar_water_cyanide": "Sugar Water Cyanide - Rebecca Black"
 }
