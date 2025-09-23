@@ -18,5 +18,12 @@
                "amaranthine:item/cleaver"
           ],
           "subtitle": "amaranthine.subtitles.item.cleaver_kill"
+     },
+
+     "block.chem_squish": {
+          "sounds": [
+               "amaranthine:block/chem_squish"
+          ],
+          "subtitle": "amaranthine.subtitles.block.chem_squish"
      }
 }

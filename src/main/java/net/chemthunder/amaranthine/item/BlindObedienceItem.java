@@ -56,11 +56,9 @@ public class BlindObedienceItem extends Item implements CustomHitParticleItem {
     @Override
     public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         World world = attacker.getWorld();
-
-
-if (world instanceof ServerWorld serverWorld) {
-    attacker.damage(serverWorld, ModDamageSources.blind(attacker), 3f);
-}
+        if (world instanceof ServerWorld serverWorld) {
+            attacker.damage(serverWorld, ModDamageSources.blind(attacker), 3f);
+        }
         super.postHit(stack, target, attacker);
     }
 

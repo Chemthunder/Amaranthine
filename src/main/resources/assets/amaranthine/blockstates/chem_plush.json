@@ -1,0 +1,19 @@
+{
+     "variants": {
+          "facing=east": {
+               "model": "amaranthine:block/chem_plush",
+               "y": 90
+          },
+          "facing=north": {
+               "model": "amaranthine:block/chem_plush"
+          },
+          "facing=south": {
+               "model": "amaranthine:block/chem_plush",
+               "y": 180
+          },
+          "facing=west": {
+               "model": "amaranthine:block/chem_plush",
+               "y": 270
+          }
+     }
+}

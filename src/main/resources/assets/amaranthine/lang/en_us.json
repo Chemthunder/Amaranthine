@@ -61,5 +61,10 @@
      "death.attack.blind.player": "%1$s attempted to wield a broken sword whilst fighting %2$s",
 
      "death.attack.chry_kill": "%1$s was cleaved in two",
-     "death.attack.chry_kill.player": "%1$s was cleaved in two by %2$s"
+     "death.attack.chry_kill.player": "%1$s was cleaved in two by %2$s",
+
+     "block.amaranthine.chem_plush": "Chem Plush",
+     "block.amaranthine.chem_plush.desc": "Only $9.99!",
+
+     "amaranthine.subtitles.block.chem_squish": "squarsh"
 }

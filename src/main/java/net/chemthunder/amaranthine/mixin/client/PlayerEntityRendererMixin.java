@@ -43,6 +43,8 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         if (stack.getItem() instanceof ChrysaorItem) {
             if (player.isUsingItem()) {
                 cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+            } else {
+                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
             }
         }
     }

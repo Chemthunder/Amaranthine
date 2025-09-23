@@ -2,11 +2,13 @@
      "required": true,
      "package": "net.chemthunder.amaranthine.mixin",
      "compatibilityLevel": "JAVA_21",
-     "mixins": [],
+     "mixins": [
+          "PlushItemMixin",
+          "PlushUtilsMixin"
+     ],
      "client": [
-          "client.PlayerEntityRendererMixin",
-          "PlayerEntityMixin"
-
+          "PlayerEntityMixin",
+          "client.PlayerEntityRendererMixin"
      ],
      "injectors": {
           "defaultRequire": 1

@@ -1,0 +1,8 @@
+{
+     "type": "gilded:tempering",
+     "base": "amaranthine:blind_obedience",
+     "contaminant": "amaranthine:amaranthine_shard",
+     "result": {
+          "id": "amaranthine:chrysaor"
+     }
+}

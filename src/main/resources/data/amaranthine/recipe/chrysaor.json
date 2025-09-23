@@ -1,0 +1,8 @@
+{
+     "type": "gilded:tempering",
+     "base": "amaranthine:amaranthine_greatsword",
+     "contaminant": "amaranthine:amaranthine_shard",
+     "result": {
+          "id": "amaranthine:chrysaor"
+     }
+}

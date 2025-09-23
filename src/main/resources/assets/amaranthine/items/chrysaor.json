@@ -15,18 +15,17 @@
                }
           ],
           "fallback": {
-               "type": "model",
-               "model": "amaranthine:item/chrysaor"
+               "type": "minecraft:condition",
+               "property": "minecraft:using_item",
+               "on_true": {
+                    "type": "minecraft:model",
+                    "model": "amaranthine:item/chrysaor_blocking"
+               },
+               "on_false": {
+                    "type": "minecraft:model",
+                    "model": "amaranthine:item/chrysaor"
+               }
           },
-          "property": "display_context",
-
-          "on_true": {
-               "type": "model",
-               "model": "amaranthine:item/chrysaor_blocking"
-          },
-          "on_false": {
-               "type": "model",
-               "model": "amaranthine:item/chrysaor"
-          }
+          "property": "display_context"
      }
 }

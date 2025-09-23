@@ -15,6 +15,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.consume.UseAction;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -85,5 +86,19 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
         }
 
         super.onItemEntityDestroyed(entity);
+    }
+    
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        return Integer.MAX_VALUE;
+    }
+
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.NONE;
+    }
+
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
+        super.use(world, user, hand);
+        user.setCurrentHand(hand);
+        return ActionResult.CONSUME;
     }
 }

@@ -75,12 +75,7 @@ public interface ModItems {
                     .build()));
 
     Item BLIND_OBEDIENCE = create("blind_obedience", BlindObedienceItem::new, new Item.Settings()
-            .sword(ToolMaterial.NETHERITE, -2.5f, -2.7f)
-
-            .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent(0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(30f, Optional.empty(), 0.0f, 1.0f)),
-                    new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
-                    Optional.of(DamageTypeTags.BYPASSES_SHIELD),
-                    Optional.of(SoundEvents.ITEM_SHIELD_BLOCK), Optional.of(SoundEvents.ITEM_SHIELD_BREAK)))
+            .sword(ToolMaterial.NETHERITE, -2.5f, -3.1f)
     );
 
     Item CAPTAINS_CUTLASS = create("captains_cutlass", CutlassItem::new, new Item.Settings()
@@ -97,9 +92,8 @@ public interface ModItems {
     );
 
     Item CHRYSAOR = create("chrysaor", ChrysaorItem::new, new AcornItemSettings()
-            .twoHanded()
-
             .maxCount(1)
+
             .component(DataComponentTypes.BLOCKS_ATTACKS, new BlocksAttacksComponent(0.10f, 1.0f, List.of(new BlocksAttacksComponent.DamageReduction(80f, Optional.empty(), 0.0f, 1.0f)),
             new BlocksAttacksComponent.ItemDamage(1.5f, 1.0f, 1.0f),
             Optional.of(DamageTypeTags.BYPASSES_SHIELD),
@@ -107,8 +101,6 @@ public interface ModItems {
 
             .sword(ToolMaterial.NETHERITE, 4.5f, -2.7f)
     );
-
-    Item CURSED_MASK = create("cursed_mask", )
 
 
     static Item create(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
