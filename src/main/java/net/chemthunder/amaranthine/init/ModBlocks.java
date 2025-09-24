@@ -34,7 +34,7 @@ public interface ModBlocks {
     static Block createWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = create(name, factory, settings);
         ModItems.create(name, itemSettings -> new BlockItem(block, itemSettings), new Item.Settings().useBlockPrefixedTranslationKey().equippableUnswappable(EquipmentSlot.HEAD)
-                .jukeboxPlayable(ModJukeboxSongs.SUGAR_WATER_CYANIDE));
+                .jukeboxPlayable(ModJukeboxSongs.WEATHERGIRL));
         return block;
     }
 

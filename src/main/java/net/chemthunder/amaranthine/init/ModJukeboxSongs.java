@@ -6,7 +6,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
 public interface ModJukeboxSongs {
-    RegistryKey<JukeboxSong> SUGAR_WATER_CYANIDE = of("sugar_water_cyanide");
+    RegistryKey<JukeboxSong> WEATHERGIRL = of("weathergirl");
 
 
     private static RegistryKey<JukeboxSong> of(String id) {

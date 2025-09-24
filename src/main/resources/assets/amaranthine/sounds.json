@@ -27,10 +27,10 @@
           "subtitle": "amaranthine.subtitles.block.chem_squish"
      },
 
-     "music.sugar_water_cyanide": {
+     "music.weathergirl": {
           "sounds": [
-               "amaranthine:music/sugar_water_cyanide"
+               "amaranthine:music/weathergirl"
           ],
-          "subtitle": "amaranthine.subtitles.music.sugar_water_cyanide"
+          "subtitle": "amaranthine.subtitles.music.weathergirl"
      }
 }
