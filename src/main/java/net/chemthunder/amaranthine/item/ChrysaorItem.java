@@ -3,15 +3,21 @@ package net.chemthunder.amaranthine.item;
 import net.acoyt.acornlib.api.item.CustomHitParticleItem;
 import net.acoyt.acornlib.api.item.CustomHitSoundItem;
 import net.acoyt.acornlib.api.item.CustomKillSourceItem;
+import net.acoyt.acornlib.api.item.KillEffectItem;
 import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.chemthunder.amaranthine.init.ModDamageSources;
 import net.chemthunder.amaranthine.init.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
@@ -28,7 +34,7 @@ import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
-public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomKillSourceItem, CustomHitSoundItem {
+public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomKillSourceItem, CustomHitSoundItem, KillEffectItem {
     public boolean chryShield = false;
 
     public ChrysaorItem(Settings settings) {
@@ -86,7 +92,7 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
 
         super.onItemEntityDestroyed(entity);
     }
-    
+
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return Integer.MAX_VALUE;
     }
@@ -99,5 +105,27 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
         super.use(world, user, hand);
         user.setCurrentHand(hand);
         return ActionResult.CONSUME;
+    }
+
+    @Override
+    public void killEntity(World world, ItemStack itemStack, LivingEntity user, LivingEntity victim) {
+        BlockPos pos = victim.getBlockPos();
+        BlockState state = world.getBlockState(pos);
+
+        if (state.isOf(Blocks.AIR) && !state.isOf(Blocks.BEDROCK) || !state.isOf(Blocks.OBSIDIAN)) {
+            world.setBlockState(pos, Blocks.TORCHFLOWER.getDefaultState());
+            if (world instanceof ServerWorld sworld) {
+                sworld.spawnParticles(ParticleTypes.WAX_ON,
+                        pos.getX() + 0.5,
+                        pos.getY(),
+                        pos.getZ() + 0.5,
+                        50,
+                        1,
+                        1,
+                        1,
+                        0.5
+                );
+            }
+        }
     }
 }

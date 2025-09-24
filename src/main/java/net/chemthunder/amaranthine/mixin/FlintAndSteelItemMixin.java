@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -36,10 +37,20 @@ public class FlintAndSteelItemMixin extends Item {
                 FallingBlockEntity chemPlushEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
                 BlockPos chemPlushEntityPos = chemPlushEntity.getBlockPos();
 
-                user.playSound(ModSounds.CHEM_SQUISH, 50, -2);
-                world.createExplosion(chemPlushEntity, chemPlushEntityPos.getX(), chemPlushEntityPos.getY(), chemPlushEntityPos.getZ(), 0, World.ExplosionSourceType.TNT);
+                serverWorld.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5,
+                        pos.getY(),
+                        pos.getZ() + 0.5,
+                        25,
+                        0,
+                        0,
+                        0,
+                        0.3
+                );
+
+                world.createExplosion(chemPlushEntity, chemPlushEntityPos.getX(), chemPlushEntityPos.getY(), chemPlushEntityPos.getZ(), 3, World.ExplosionSourceType.TNT);
                 chemPlushEntity.kill(serverWorld);
             }
+            user.playSound(ModSounds.CHEM_SQUISH, 50, 25);
         }
     }
 }
