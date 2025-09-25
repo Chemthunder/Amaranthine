@@ -1,8 +1,0 @@
-{
-     "description": {
-          "translate": "jukebox_song.amaranthine.sugar_water_cyanide"
-     },
-     "comparator_output": 1,
-     "length_in_seconds": 180,
-     "sound_event": "amaranthine:music.sugar_water_cyanide"
-}
