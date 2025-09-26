@@ -104,6 +104,30 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         super.use(world, user, hand);
         user.setCurrentHand(hand);
+        BlockPos pos = user.getBlockPos();
+
+        if (user.isSneaking() && !user.isOnGround()) {
+            user.setVelocity(user.getRotationVec(0).multiply(2));
+            user.velocityModified = true;
+            user.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE);
+
+            if (!user.isInCreativeMode()) {
+                user.getItemCooldownManager().set(user.getStackInHand(hand), 60);
+            }
+
+            if (world instanceof ServerWorld serverWorld) {
+                serverWorld.spawnParticles(ParticleTypes.END_ROD,
+                        pos.getX(),
+                        pos.getY(),
+                        pos.getZ(),
+                        35,
+                        1,
+                        1,
+                        1,
+                        0.04
+                );
+            }
+        }
         return ActionResult.CONSUME;
     }
 
