@@ -135,20 +135,23 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
     public void killEntity(World world, ItemStack itemStack, LivingEntity user, LivingEntity victim) {
         BlockPos pos = victim.getBlockPos();
         BlockState state = world.getBlockState(pos);
+        BlockPos belowPos = pos.down();
 
         if (state.isOf(Blocks.AIR) && !state.isOf(Blocks.BEDROCK) || !state.isOf(Blocks.OBSIDIAN)) {
             world.setBlockState(pos, Blocks.TORCHFLOWER.getDefaultState());
             if (world instanceof ServerWorld sworld) {
-                sworld.spawnParticles(ParticleTypes.WAX_ON,
-                        pos.getX() + 0.5,
-                        pos.getY(),
-                        pos.getZ() + 0.5,
-                        50,
-                        1,
-                        1,
-                        1,
-                        0.5
-                );
+                if (world.getBlockState(belowPos).isOf(Blocks.GRASS_BLOCK) || world.getBlockState(belowPos).isOf(Blocks.DIRT) || world.getBlockState(belowPos).isOf(Blocks.COARSE_DIRT)) {
+                    sworld.spawnParticles(ParticleTypes.WAX_ON,
+                            pos.getX() + 0.5,
+                            pos.getY(),
+                            pos.getZ() + 0.5,
+                            50,
+                            1,
+                            1,
+                            1,
+                            0.5
+                    );
+                }
             }
         }
     }
