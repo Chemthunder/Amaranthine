@@ -1,8 +1,0 @@
-{
-     "description": {
-          "translate": "jukebox_song.amaranthine.weathergirl"
-     },
-     "comparator_output": 1,
-     "length_in_seconds": 180,
-     "sound_event": "amaranthine:music.weathergirl"
-}

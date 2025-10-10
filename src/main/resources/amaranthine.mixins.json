@@ -3,12 +3,9 @@
      "package": "net.chemthunder.amaranthine.mixin",
      "compatibilityLevel": "JAVA_21",
      "mixins": [
-          "FlintAndSteelItemMixin",
-          "PlushItemMixin",
-          "PlushUtilsMixin"
+          "PlayerEntityMixin"
      ],
      "client": [
-          "PlayerEntityMixin",
           "client.PlayerEntityRendererMixin"
      ],
      "injectors": {

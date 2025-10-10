@@ -111,6 +111,6 @@ public interface ModItems {
         modifyItemNameColor(BLIND_OBEDIENCE, 0x0a0a0a);
         modifyItemNameColor(CAPTAINS_CUTLASS, 0x93E9BE);
         modifyItemNameColor(CHRYSAOR, 0x3c1c1b);
-        modifyItemNameColor(Item.fromBlock(ModBlocks.CHEM_PLUSH), 0x47091d);
+       // modifyItemNameColor(Item.fromBlock(ModBlocks.CHEM_PLUSH), 0x47091d);
     }
 }

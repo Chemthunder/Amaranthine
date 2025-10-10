@@ -104,30 +104,6 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         super.use(world, user, hand);
         user.setCurrentHand(hand);
-        BlockPos pos = user.getBlockPos();
-
-        if (user.isSneaking() && !user.isOnGround()) {
-            user.setVelocity(user.getRotationVec(0).multiply(2));
-            user.velocityModified = true;
-            user.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE);
-
-            if (!user.isInCreativeMode()) {
-                user.getItemCooldownManager().set(user.getStackInHand(hand), 60);
-            }
-
-            if (world instanceof ServerWorld serverWorld) {
-                serverWorld.spawnParticles(ParticleTypes.END_ROD,
-                        pos.getX(),
-                        pos.getY(),
-                        pos.getZ(),
-                        35,
-                        1,
-                        1,
-                        1,
-                        0.04
-                );
-            }
-        }
         return ActionResult.CONSUME;
     }
 
@@ -138,21 +114,55 @@ public class ChrysaorItem extends Item implements CustomHitParticleItem, CustomK
         BlockPos belowPos = pos.down();
 
         if (state.isOf(Blocks.AIR) && !state.isOf(Blocks.BEDROCK) || !state.isOf(Blocks.OBSIDIAN)) {
-            world.setBlockState(pos, Blocks.TORCHFLOWER.getDefaultState());
-            if (world instanceof ServerWorld sworld) {
-                if (world.getBlockState(belowPos).isOf(Blocks.GRASS_BLOCK) || world.getBlockState(belowPos).isOf(Blocks.DIRT) || world.getBlockState(belowPos).isOf(Blocks.COARSE_DIRT)) {
-                    sworld.spawnParticles(ParticleTypes.WAX_ON,
-                            pos.getX() + 0.5,
-                            pos.getY(),
-                            pos.getZ() + 0.5,
-                            50,
-                            1,
-                            1,
-                            1,
-                            0.5
-                    );
+            if (user.isSneaking()) {
+                world.setBlockState(pos, Blocks.TORCHFLOWER.getDefaultState());
+                if (world instanceof ServerWorld sworld) {
+                    if (world.getBlockState(belowPos).isOf(Blocks.GRASS_BLOCK) || world.getBlockState(belowPos).isOf(Blocks.DIRT) || world.getBlockState(belowPos).isOf(Blocks.COARSE_DIRT)) {
+                        sworld.spawnParticles(ParticleTypes.WAX_ON,
+                                pos.getX() + 0.5,
+                                pos.getY(),
+                                pos.getZ() + 0.5,
+                                50,
+                                1,
+                                1,
+                                1,
+                                0.5
+                        );
+                    }
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        BlockPos pos = user.getBlockPos();
+
+        if (!user.isOnGround()) {
+            if (user instanceof PlayerEntity player) {
+                player.setVelocity(user.getRotationVec(0).multiply(2));
+                player.velocityModified = true;
+                player.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE);
+
+                if (!user.isInCreativeMode()) {
+                    player.getItemCooldownManager().set(player.getStackInHand(player.getActiveHand()), 60);
+                }
+
+                if (world instanceof ServerWorld serverWorld) {
+                    serverWorld.spawnParticles(ParticleTypes.END_ROD,
+                            pos.getX(),
+                            pos.getY(),
+                            pos.getZ(),
+                            35,
+                            1,
+                            1,
+                            1,
+                            0.04
+                    );
+                }
+            }
+            return super.onStoppedUsing(stack, world, user, remainingUseTicks);
+        }
+        return true;
     }
 }

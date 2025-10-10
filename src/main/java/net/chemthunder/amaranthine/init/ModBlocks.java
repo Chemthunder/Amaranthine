@@ -21,9 +21,9 @@ import net.minecraft.registry.RegistryKeys;
 import java.util.function.Function;
 
 public interface ModBlocks {
-    Block CHEM_PLUSH = createWithItem("chem_plush", PlushBlock::new, AbstractBlock.Settings.copy(Blocks.RED_WOOL)
-            .nonOpaque()
-    );
+//    Block CHEM_PLUSH = createWithItem("chem_plush", PlushBlock::new, AbstractBlock.Settings.copy(Blocks.RED_WOOL)
+//            .nonOpaque()
+//    );
 
 
     static Block create(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
@@ -34,20 +34,18 @@ public interface ModBlocks {
     static Block createWithItem(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         Block block = create(name, factory, settings);
         ModItems.create(name, itemSettings -> new BlockItem(block, itemSettings), new Item.Settings().useBlockPrefixedTranslationKey().equippableUnswappable(EquipmentSlot.HEAD)
-                .jukeboxPlayable(ModJukeboxSongs.WEATHERGIRL));
+              );
         return block;
     }
 
     static void init() {
-        AcornBlockEntities.PLUSH.addSupportedBlock(CHEM_PLUSH);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(ModBlocks::addFunctionalEntries);
+//        AcornBlockEntities.PLUSH.addSupportedBlock(CHEM_PLUSH);
+//        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(ModBlocks::addFunctionalEntries);
     }
 
     static void clientInit() {
-        BlockRenderLayerMap.INSTANCE.putBlock(CHEM_PLUSH, RenderLayer.getCutout());
+       // BlockRenderLayerMap.INSTANCE.putBlock(CHEM_PLUSH, RenderLayer.getCutout());
     }
 
-    private static void addFunctionalEntries(FabricItemGroupEntries entries) {
-       entries.addAfter(AcornBlocks.TOAST_PLUSH, CHEM_PLUSH);
-    }
+
 }
